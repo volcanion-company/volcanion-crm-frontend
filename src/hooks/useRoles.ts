@@ -18,10 +18,7 @@ const PERMISSIONS_QUERY_KEY = 'permissions';
 export function useRoles() {
   return useQuery({
     queryKey: [ROLES_QUERY_KEY],
-    queryFn: async () => {
-      const response = await roleService.getRoles();
-      return response.data;
-    },
+    queryFn: () => roleService.getRoles(),
   });
 }
 
@@ -31,10 +28,7 @@ export function useRoles() {
 export function useRole(id: string) {
   return useQuery({
     queryKey: [ROLES_QUERY_KEY, id],
-    queryFn: async () => {
-      const response = await roleService.getRole(id);
-      return response.data;
-    },
+    queryFn: () => roleService.getRole(id),
     enabled: !!id,
   });
 }
@@ -45,10 +39,7 @@ export function useRole(id: string) {
 export function usePermissions() {
   return useQuery({
     queryKey: [PERMISSIONS_QUERY_KEY],
-    queryFn: async () => {
-      const response = await roleService.getPermissions();
-      return response.data;
-    },
+    queryFn: () => roleService.getPermissions(),
   });
 }
 

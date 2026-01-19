@@ -13,10 +13,10 @@ import { useTranslations } from 'next-intl';
 import { DataScope, type CreateRoleRequest, type PermissionModule } from '@/types';
 
 const dataScopeOptions = [
-  { value: DataScope.AllInOrganization, label: 'All in Organization' },
-  { value: DataScope.Department, label: 'Department' },
-  { value: DataScope.TeamOnly, label: 'Team Only' },
-  { value: DataScope.OnlyOwn, label: 'Only Own' },
+  { value: DataScope.AllInOrganization, key: 'allinorganization' },
+  { value: DataScope.Department, key: 'department' },
+  { value: DataScope.TeamOnly, key: 'teamonly' },
+  { value: DataScope.OnlyOwn, key: 'onlyown' },
 ];
 
 export default function NewRolePage() {
@@ -224,7 +224,7 @@ export default function NewRolePage() {
               >
                 {dataScopeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {t(`dataScope.${option.value}`) || option.label}
+                    {t(`dataScope.${option.key}`)}
                   </option>
                 ))}
               </select>

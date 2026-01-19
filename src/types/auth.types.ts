@@ -21,6 +21,7 @@ export interface User {
   status?: UserStatus; // User Management module
   tenantId: string;
   tenantName?: string;
+  tenant?: UserTenant;
   isActive: boolean; // For auth compatibility
   timeZone?: string;
   culture?: string;
@@ -62,8 +63,8 @@ export interface ChangePasswordRequest {
   confirmPassword: string;
 }
 
-// Tenant Types
-export interface Tenant {
+// User's Tenant Info (for auth context)
+export interface UserTenant {
   id: string;
   name: string;
   companyName: string;

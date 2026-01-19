@@ -68,6 +68,7 @@ const navigationGroups = [
     items: [
       { key: 'users', href: '/users', icon: UserCog },
       { key: 'roles', href: '/roles', icon: Shield },
+      { key: 'tenants', href: '/tenants', icon: Building2 },
     ],
   },
   {

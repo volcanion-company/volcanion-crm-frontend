@@ -41,3 +41,6 @@ export * from './report.types';
 // Business Data
 export * from './company.types';
 
+// Multi-Tenancy
+export * from './tenant.types';
+

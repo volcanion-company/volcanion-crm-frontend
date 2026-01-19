@@ -20,6 +20,13 @@ const dataScopeColors: Record<DataScope, 'default' | 'success' | 'warning' | 'in
   [DataScope.OnlyOwn]: 'default',
 };
 
+const dataScopeKeys: Record<DataScope, string> = {
+  [DataScope.AllInOrganization]: 'allinorganization',
+  [DataScope.Department]: 'department',
+  [DataScope.TeamOnly]: 'teamonly',
+  [DataScope.OnlyOwn]: 'onlyown',
+};
+
 export default function RolesPage() {
   const t = useTranslations('roles');
   const tCommon = useTranslations('common');
@@ -95,8 +102,8 @@ export default function RolesPage() {
                     {role.description || '-'}
                   </TableCell>
                   <TableCell>
-                    <Badge variant={dataScopeColors[role.dataScope as DataScope]}>
-                      {t(`dataScope.${DataScope[role.dataScope].toLowerCase()}`)}
+                    <Badge variant={dataScopeColors[role.dataScope as DataScope] || 'default'}>
+                      {t(`dataScope.${dataScopeKeys[role.dataScope as DataScope] || 'onlyown'}`)}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-center">

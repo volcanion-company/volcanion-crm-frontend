@@ -9,7 +9,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/Badge';
 import { Pagination } from '@/components/ui/Pagination';
 import { Loading } from '@/components/ui/Loading';
-import { Plus, Search, Trash2, UserCheck, UserX, KeyRound, Loader2, Mail, Phone } from 'lucide-react';
+import { Plus, Search, Trash2, UserCheck, UserX, KeyRound, Loader2, Mail, Phone, Copy, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import { formatDate } from '@/lib/utils';
 import { UserStatus } from '@/types';
 import { useTranslations } from 'next-intl';
@@ -311,9 +312,23 @@ export default function UsersPage() {
             {newPassword ? (
               <>
                 <p className="text-muted-foreground mb-4">{t('resetPasswordDialog.successMessage')}</p>
-                <div className="bg-gray-100 p-4 rounded-md mb-6">
+                <div className="bg-muted p-4 rounded-md mb-6">
                   <p className="text-sm text-muted-foreground mb-2">{t('resetPasswordDialog.newPassword')}:</p>
-                  <p className="text-lg font-mono font-bold">{newPassword}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-lg font-mono font-bold text-foreground">{newPassword}</p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        navigator.clipboard.writeText(newPassword);
+                        toast.success(t('resetPasswordDialog.copied'));
+                      }}
+                      className="shrink-0"
+                    >
+                      <Copy className="h-4 w-4 mr-1" />
+                      {t('resetPasswordDialog.copy')}
+                    </Button>
+                  </div>
                 </div>
                 <div className="flex justify-end">
                   <Button

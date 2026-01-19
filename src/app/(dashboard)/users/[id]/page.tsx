@@ -176,11 +176,15 @@ export default function UserDetailPage({ params }: UserDetailPageProps) {
               <div>
                 <label className="text-sm font-medium text-gray-500">{t('fields.roles')}</label>
                 <div className="flex flex-wrap gap-2 mt-1">
-                  {user.roles.map((role: string) => (
-                    <Badge key={role} variant="default">
-                      {role}
-                    </Badge>
-                  ))}
+                  {user.roles.map((role: { id: string; name: string } | string) => {
+                    const roleId = typeof role === 'string' ? role : role.id;
+                    const roleName = typeof role === 'string' ? role : role.name;
+                    return (
+                      <Badge key={roleId} variant="default">
+                        {roleName}
+                      </Badge>
+                    );
+                  })}
                 </div>
               </div>
             )}

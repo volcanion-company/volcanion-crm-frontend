@@ -9,7 +9,7 @@ import type {
   ApiResponse,
 } from '@/types';
 
-const BASE_URL = '/roles';
+const BASE_URL = '/api/v1/roles';
 
 /**
  * Get all roles

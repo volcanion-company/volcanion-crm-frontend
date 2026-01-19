@@ -20,10 +20,10 @@ interface EditRolePageProps {
 }
 
 const dataScopeOptions = [
-  { value: DataScope.AllInOrganization, label: 'All in Organization' },
-  { value: DataScope.Department, label: 'Department' },
-  { value: DataScope.TeamOnly, label: 'Team Only' },
-  { value: DataScope.OnlyOwn, label: 'Only Own' },
+  { value: DataScope.AllInOrganization, key: 'allinorganization' },
+  { value: DataScope.Department, key: 'department' },
+  { value: DataScope.TeamOnly, key: 'teamonly' },
+  { value: DataScope.OnlyOwn, key: 'onlyown' },
 ];
 
 export default function EditRolePage({ params }: EditRolePageProps) {
@@ -255,14 +255,14 @@ export default function EditRolePage({ params }: EditRolePageProps) {
 
       {/* System Role Warning */}
       {role.isSystemRole && (
-        <Card className="p-4 bg-yellow-50 border-yellow-200">
+        <Card className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800">
           <div className="flex items-center gap-3">
-            <AlertTriangle className="h-5 w-5 text-yellow-600" />
+            <AlertTriangle className="h-5 w-5 text-yellow-600 dark:text-yellow-500" />
             <div className="flex-1">
               <Badge variant="warning" className="mb-1">
                 {t('systemRole') || 'System Role'}
               </Badge>
-              <p className="text-sm text-yellow-800 font-medium">
+              <p className="text-sm text-yellow-800 dark:text-yellow-200 font-medium">
                 Đây là vai trò hệ thống. Chỉnh sửa cẩn thận!
               </p>
             </div>
@@ -305,7 +305,7 @@ export default function EditRolePage({ params }: EditRolePageProps) {
                 value={formData.description}
                 onChange={(e) => handleChange('description', e.target.value)}
                 placeholder={t('placeholders.description') || 'Enter role description (optional)'}
-                className="w-full min-h-[100px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full min-h-[100px] px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
                 rows={3}
               />
             </div>
@@ -319,13 +319,13 @@ export default function EditRolePage({ params }: EditRolePageProps) {
                 id="dataScope"
                 value={formData.dataScope}
                 onChange={(e) => handleChange('dataScope', Number(e.target.value))}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                  errors.dataScope ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground ${
+                  errors.dataScope ? 'border-red-500' : 'border-input'
                 }`}
               >
                 {dataScopeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {t(`dataScope.${option.value}`) || option.label}
+                    {t(`dataScope.${option.key}`)}
                   </option>
                 ))}
               </select>
@@ -366,15 +366,15 @@ export default function EditRolePage({ params }: EditRolePageProps) {
                 return (
                   <div
                     key={module.module}
-                    className="border border-gray-200 rounded-lg overflow-hidden"
+                    className="border border-border rounded-lg overflow-hidden"
                   >
                     {/* Module Header */}
-                    <div className="bg-gray-50 p-4 flex items-center justify-between">
+                    <div className="bg-muted p-4 flex items-center justify-between">
                       <div className="flex items-center gap-3 flex-1">
                         <button
                           type="button"
                           onClick={() => toggleModule(module.module)}
-                          className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                          className="text-muted-foreground hover:text-foreground focus:outline-none"
                         >
                           {isExpanded ? (
                             <ChevronDown className="h-5 w-5" />
@@ -390,7 +390,7 @@ export default function EditRolePage({ params }: EditRolePageProps) {
                             {t(`modules.${module.module}`) || module.module}
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            {module.permissions.length} {t('permissions') || 'permissions'}
+                            {module.permissions.length} {t('permissionCount', { count: module.permissions.length }) || 'permissions'}
                           </p>
                         </div>
                         <label className="flex items-center gap-2 cursor-pointer">
@@ -403,7 +403,7 @@ export default function EditRolePage({ params }: EditRolePageProps) {
                               }
                             }}
                             onChange={() => toggleModulePermissions(module)}
-                            className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            className="w-4 h-4 rounded border-input text-primary focus:ring-primary"
                           />
                           <span className="text-sm font-medium">
                             {t('selectAll') || 'Select All'}
@@ -414,18 +414,18 @@ export default function EditRolePage({ params }: EditRolePageProps) {
 
                     {/* Module Permissions */}
                     {isExpanded && (
-                      <div className="p-4 bg-white">
+                      <div className="p-4 bg-background">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                           {module.permissions.map((permission) => (
                             <label
                               key={permission.id}
-                              className="flex items-start gap-2 p-3 rounded border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors"
+                              className="flex items-start gap-2 p-3 rounded border border-border hover:bg-muted cursor-pointer transition-colors"
                             >
                               <input
                                 type="checkbox"
                                 checked={selectedPermissions.includes(permission.id)}
                                 onChange={() => togglePermission(permission.id)}
-                                className="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                className="mt-0.5 w-4 h-4 rounded border-input text-primary focus:ring-primary"
                               />
                               <div className="flex-1 min-w-0">
                                 <div className="font-medium text-sm">

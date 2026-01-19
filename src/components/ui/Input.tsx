@@ -23,6 +23,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className
           )}
           ref={ref}
+          suppressHydrationWarning
           {...props}
         />
         {error && <p className="text-sm text-destructive">{error}</p>}

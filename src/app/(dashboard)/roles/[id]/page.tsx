@@ -24,6 +24,13 @@ const dataScopeColors: Record<DataScope, 'default' | 'success' | 'warning' | 'in
   [DataScope.OnlyOwn]: 'default',
 };
 
+const dataScopeKeys: Record<DataScope, string> = {
+  [DataScope.AllInOrganization]: 'allinorganization',
+  [DataScope.Department]: 'department',
+  [DataScope.TeamOnly]: 'teamonly',
+  [DataScope.OnlyOwn]: 'onlyown',
+};
+
 export default function RoleDetailPage({ params }: RoleDetailPageProps) {
   const { id } = use(params);
   const router = useRouter();
@@ -116,26 +123,26 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-muted-foreground">
                   {t('fields.name')}
                 </label>
                 <p className="mt-1 text-base">{role.name}</p>
               </div>
               
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-muted-foreground">
                   {t('fields.dataScope')}
                 </label>
                 <div className="mt-1">
-                  <Badge variant={dataScopeColors[role.dataScope as DataScope]}>
-                    {t(`dataScope.${DataScope[role.dataScope].toLowerCase()}`)}
+                  <Badge variant={dataScopeColors[role.dataScope as DataScope] || 'default'}>
+                    {t(`dataScope.${dataScopeKeys[role.dataScope as DataScope] || 'onlyown'}`)}
                   </Badge>
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-500">
+              <label className="text-sm font-medium text-muted-foreground">
                 {t('fields.description')}
               </label>
               <p className="mt-1 text-base">{role.description || '-'}</p>
@@ -143,7 +150,7 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-muted-foreground">
                   {t('fields.type')}
                 </label>
                 <div className="mt-1">
@@ -156,7 +163,7 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-muted-foreground">
                   {t('fields.createdAt')}
                 </label>
                 <p className="mt-1 text-base">
@@ -179,7 +186,7 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
             <div className="space-y-6">
               {Object.entries(groupedPermissions).map(([module, permissions]) => (
                 <div key={module} className="border-b last:border-b-0 pb-4 last:pb-0">
-                  <h3 className="font-semibold text-lg mb-3 text-gray-700 flex items-center gap-2">
+                  <h3 className="font-semibold text-lg mb-3 text-foreground flex items-center gap-2">
                     <Shield className="h-5 w-5" />
                     {module}
                   </h3>
@@ -187,11 +194,11 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
                     {permissions.map((permission) => (
                       <div
                         key={permission.id}
-                        className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg"
+                        className="flex items-start gap-2 p-3 bg-muted rounded-lg"
                       >
                         <div className="flex-1">
                           <p className="font-medium text-sm">{permission.name}</p>
-                          <p className="text-xs text-gray-500 font-mono mt-1">
+                          <p className="text-xs text-muted-foreground font-mono mt-1">
                             {permission.code}
                           </p>
                         </div>
@@ -215,7 +222,7 @@ export default function RoleDetailPage({ params }: RoleDetailPageProps) {
           <Card className="w-full max-w-md">
             <div className="p-6">
               <h3 className="text-lg font-semibold mb-2">{t('deleteDialog.title')}</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 {t('deleteDialog.message', { name: role.name })}
               </p>
               <div className="flex gap-2 justify-end">

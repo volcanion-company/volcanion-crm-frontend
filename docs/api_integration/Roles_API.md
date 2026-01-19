@@ -14,17 +14,17 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
 │  Without RBAC (Direct Permission):   With RBAC (Role-Based):                │
-│  ──────────────────────────────────  ────────────────────                  │
+│  ──────────────────────────────────  ────────────────────                   │
 │                                                                             │
-│  User 1: [perm1, perm2, perm3, ...]  Role: Sales                           │
-│  User 2: [perm1, perm2, perm3, ...]    Permissions: [perm1, perm2, ...]    │
-│  User 3: [perm1, perm2, perm3, ...]                                        │
-│  ... (50 sales reps)                 Users: [User1, User2, ... User50]     │
+│  User 1: [perm1, perm2, perm3, ...]  Role: Sales                            │
+│  User 2: [perm1, perm2, perm3, ...]    Permissions: [perm1, perm2, ...]     │
+│  User 3: [perm1, perm2, perm3, ...]                                         │
+│  ... (50 sales reps)                 Users: [User1, User2, ... User50]      │
 │                                        ↑ All inherit Sales permissions      │
-│  ❌ Manage 50× separately              ✅ Manage once, apply to all         │
-│  ❌ Inconsistent permissions           ✅ Consistent across role             │
-│  ❌ Hard to audit                      ✅ Easy to audit                      │
-│  ❌ Error-prone                        ✅ Scalable & maintainable            │
+│  ❌ Manage 50× separately              ✅ Manage once, apply to all        │
+│  ❌ Inconsistent permissions           ✅ Consistent across role           │
+│  ❌ Hard to audit                      ✅ Easy to audit                    │
+│  ❌ Error-prone                        ✅ Scalable & maintainable          │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -60,39 +60,39 @@
 │  └──────────────┘                                                           │
 │                                                                             │
 │  Example: Sales Manager Role                                                │
-│  ─────────────────────────────────────────────────────────────────────     │
-│  ┌────────────────────────────────────────┐                                │
-│  │ Role: Sales Manager                    │                                │
-│  │ Data Scope: AllInOrganization          │                                │
-│  │                                        │                                │
-│  │ Permissions (45 total):                │                                │
-│  │   Customer Module:                     │                                │
-│  │     ✓ customer.view                    │                                │
-│  │     ✓ customer.create                  │                                │
-│  │     ✓ customer.update                  │                                │
-│  │     ✗ customer.delete                  │                                │
-│  │                                        │                                │
-│  │   Lead Module:                         │                                │
-│  │     ✓ lead.view                        │                                │
-│  │     ✓ lead.create                      │                                │
-│  │     ✓ lead.update                      │                                │
-│  │     ✓ lead.assign                      │                                │
-│  │     ✗ lead.delete                      │                                │
-│  │                                        │                                │
-│  │   Opportunity Module:                  │                                │
-│  │     ✓ opportunity.view                 │                                │
-│  │     ✓ opportunity.create               │                                │
-│  │     ✓ opportunity.update               │                                │
-│  │     ✓ opportunity.approve              │                                │
-│  │                                        │                                │
-│  │   Report Module:                       │                                │
-│  │     ✓ report.view                      │                                │
-│  │     ✓ report.export                    │                                │
-│  │                                        │                                │
-│  │   User Module:                         │                                │
-│  │     ✗ user.create  (Admin only)        │                                │
-│  │     ✗ user.delete  (Admin only)        │                                │
-│  └────────────────────────────────────────┘                                │
+│  ─────────────────────────────────────────────────────────────────────      │
+│  ┌────────────────────────────────────────┐                                 │
+│  │ Role: Sales Manager                    │                                 │
+│  │ Data Scope: AllInOrganization          │                                 │
+│  │                                        │                                 │
+│  │ Permissions (45 total):                │                                 │
+│  │   Customer Module:                     │                                 │
+│  │     ✓ customer.view                    │                                 │
+│  │     ✓ customer.create                  │                                 │
+│  │     ✓ customer.update                  │                                 │
+│  │     ✗ customer.delete                  │                                 │
+│  │                                        │                                 │
+│  │   Lead Module:                         │                                 │
+│  │     ✓ lead.view                        │                                 │
+│  │     ✓ lead.create                      │                                 │
+│  │     ✓ lead.update                      │                                 │
+│  │     ✓ lead.assign                      │                                 │
+│  │     ✗ lead.delete                      │                                 │
+│  │                                        │                                 │
+│  │   Opportunity Module:                  │                                 │
+│  │     ✓ opportunity.view                 │                                 │
+│  │     ✓ opportunity.create               │                                 │
+│  │     ✓ opportunity.update               │                                 │
+│  │     ✓ opportunity.approve              │                                 │
+│  │                                        │                                 │
+│  │   Report Module:                       │                                 │
+│  │     ✓ report.view                      │                                 │
+│  │     ✓ report.export                    │                                 │
+│  │                                        │                                 │
+│  │   User Module:                         │                                 │
+│  │     ✗ user.create  (Admin only)        │                                 │
+│  │     ✗ user.delete  (Admin only)        │                                 │
+│  └────────────────────────────────────────┘                                 │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -310,7 +310,7 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
 │  System Roles (Built-in):                                                   │
-│  ─────────────────────────────────────────────────────────────────────     │
+│  ─────────────────────────────────────────────────────────────────────      │
 │  • Pre-configured by system                                                 │
 │  • Cannot be deleted                                                        │
 │  • Can be modified (with caution)                                           │
@@ -319,7 +319,7 @@
 │    - User: Basic access                                                     │
 │                                                                             │
 │  Custom Roles (User-created):                                               │
-│  ─────────────────────────────────────────────────────────────────────     │
+│  ─────────────────────────────────────────────────────────────────────      │
 │  • Created by admins for specific needs                                     │
 │  • Can be deleted (if no users assigned)                                    │
 │  • Fully customizable                                                       │

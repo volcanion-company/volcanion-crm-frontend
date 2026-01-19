@@ -289,11 +289,14 @@ export default function EditUserPage({ params }: EditUserPageProps) {
               <div className="mt-3">
                 <p className="text-sm text-gray-600">Role hiện tại:</p>
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {user.roles.map((roleId: string, index: number) => (
-                    <Badge key={index} variant="default">
-                      {roleId}
-                    </Badge>
-                  ))}
+                  {user.roles.map((role: { id: string; name: string } | string, index: number) => {
+                    const roleName = typeof role === 'string' ? role : role.name;
+                    return (
+                      <Badge key={index} variant="default">
+                        {roleName}
+                      </Badge>
+                    );
+                  })}
                 </div>
               </div>
             )}

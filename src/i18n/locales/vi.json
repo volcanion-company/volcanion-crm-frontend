@@ -77,6 +77,7 @@
     "settings": "Cài đặt",
     "users": "Người dùng",
     "roles": "Vai trò",
+    "tenants": "Tổ chức",
     "overview": "Tổng quan",
     "marketing": "Marketing",
     "sales": "Bán hàng",
@@ -644,29 +645,40 @@
     }
   },
   "roles": {
-    "title": "Quản lý vai trò",
+    "title": "Phân quyền",
     "subtitle": "Quản lý vai trò và quyền hạn trong hệ thống",
     "notFound": "Không tìm thấy vai trò",
     "noData": "Không có vai trò nào",
     "roleDetails": "Chi tiết vai trò",
+    "detailSubtitle": "Xem chi tiết thông tin vai trò",
+    "roleInformation": "Thông tin vai trò",
     "systemRole": "Vai trò hệ thống",
     "customRole": "Vai trò tùy chỉnh",
     "cannotDeleteSystemRole": "Không thể xóa vai trò hệ thống",
     "systemRoleWarning": "Đây là vai trò hệ thống. Chỉnh sửa cẩn thận!",
+    "backToRoles": "Quay lại danh sách vai trò",
+    "backToDetail": "Quay lại chi tiết",
     "create": {
       "title": "Tạo vai trò mới",
-      "subtitle": "Thêm vai trò mới vào hệ thống"
+      "subtitle": "Thêm vai trò mới vào hệ thống",
+      "submit": "Tạo vai trò"
     },
     "edit": {
       "title": "Chỉnh sửa vai trò",
-      "subtitle": "Cập nhật thông tin vai trò"
+      "subtitle": "Cập nhật thông tin vai trò",
+      "submit": "Lưu thay đổi"
+    },
+    "validation": {
+      "nameRequired": "Tên vai trò là bắt buộc",
+      "dataScopeRequired": "Phạm vi dữ liệu là bắt buộc"
     },
     "sections": {
       "roleInfo": "Thông tin vai trò",
       "permissions": "Quyền hạn",
       "selectPermissions": "Chọn quyền hạn",
       "basicInfo": "Thông tin cơ bản",
-      "dataScope": "Phạm vi dữ liệu"
+      "dataScope": "Phạm vi dữ liệu",
+      "permissionsDescription": "Chọn các quyền hạn cho vai trò này"
     },
     "fields": {
       "name": "Tên vai trò",
@@ -698,7 +710,9 @@
       "selectAll": "Chọn tất cả",
       "deselectAll": "Bỏ chọn tất cả",
       "expandAll": "Mở rộng tất cả",
-      "collapseAll": "Thu gọn tất cả"
+      "collapseAll": "Thu gọn tất cả",
+      "edit": "Chỉnh sửa",
+      "view": "Xem chi tiết"
     },
     "search": {
       "placeholder": "Tìm kiếm theo tên vai trò..."
@@ -737,8 +751,208 @@
       "workflow": "Quy trình tự động"
     },
     "permissionCount": "{count} quyền",
+    "permissionsSelected": "quyền đã chọn",
     "selectedPermissions": "{count} quyền đã chọn",
-    "noPermissions": "Không có quyền hạn nào"
+    "noPermissions": "Không có quyền hạn nào",
+    "noPermissionsAvailable": "Không có quyền hạn khả dụng",
+    "selectAll": "Chọn tất cả",
+    "modules": {
+      "Customer": "Khách hàng",
+      "Lead": "Khách hàng tiềm năng",
+      "Opportunity": "Cơ hội",
+      "Contact": "Liên hệ",
+      "Ticket": "Yêu cầu hỗ trợ",
+      "Activity": "Hoạt động",
+      "Campaign": "Chiến dịch",
+      "Report": "Báo cáo",
+      "User": "Người dùng",
+      "Role": "Vai trò",
+      "Workflow": "Quy trình tự động",
+      "Order": "Đơn hàng",
+      "Quotation": "Báo giá",
+      "Contract": "Hợp đồng",
+      "Company": "Công ty",
+      "Deal": "Giao dịch",
+      "Analytics": "Phân tích",
+      "Setting": "Cài đặt",
+      "Settings": "Cài đặt",
+      "Tenant": "Tổ chức",
+      "Audit": "Kiểm toán"
+    },
+    "permissions": {
+      "customer": {
+        "view": "Xem khách hàng",
+        "create": "Tạo khách hàng",
+        "update": "Cập nhật khách hàng",
+        "delete": "Xóa khách hàng",
+        "export": "Xuất khách hàng",
+        "import": "Nhập khách hàng"
+      },
+      "lead": {
+        "view": "Xem lead",
+        "create": "Tạo lead",
+        "update": "Cập nhật lead",
+        "delete": "Xóa lead",
+        "convert": "Chuyển đổi lead",
+        "assign": "Phân công lead",
+        "export": "Xuất lead",
+        "import": "Nhập lead"
+      },
+      "opportunity": {
+        "view": "Xem cơ hội",
+        "create": "Tạo cơ hội",
+        "update": "Cập nhật cơ hội",
+        "delete": "Xóa cơ hội",
+        "close": "Đóng cơ hội",
+        "assign": "Phân công cơ hội",
+        "export": "Xuất cơ hội",
+        "import": "Nhập cơ hội"
+      },
+      "contact": {
+        "view": "Xem liên hệ",
+        "create": "Tạo liên hệ",
+        "update": "Cập nhật liên hệ",
+        "delete": "Xóa liên hệ",
+        "export": "Xuất liên hệ",
+        "import": "Nhập liên hệ"
+      },
+      "ticket": {
+        "view": "Xem ticket",
+        "create": "Tạo ticket",
+        "update": "Cập nhật ticket",
+        "delete": "Xóa ticket",
+        "assign": "Phân công ticket",
+        "resolve": "Giải quyết ticket",
+        "close": "Đóng ticket",
+        "export": "Xuất ticket",
+        "import": "Nhập ticket"
+      },
+      "activity": {
+        "view": "Xem hoạt động",
+        "create": "Tạo hoạt động",
+        "update": "Cập nhật hoạt động",
+        "delete": "Xóa hoạt động",
+        "export": "Xuất hoạt động",
+        "import": "Nhập hoạt động"
+      },
+      "campaign": {
+        "view": "Xem chiến dịch",
+        "create": "Tạo chiến dịch",
+        "update": "Cập nhật chiến dịch",
+        "delete": "Xóa chiến dịch",
+        "execute": "Thực thi chiến dịch",
+        "pause": "Tạm dừng chiến dịch",
+        "export": "Xuất chiến dịch",
+        "import": "Nhập chiến dịch"
+      },
+      "report": {
+        "view": "Xem báo cáo",
+        "create": "Tạo báo cáo",
+        "update": "Cập nhật báo cáo",
+        "delete": "Xóa báo cáo",
+        "export": "Xuất báo cáo",
+        "import": "Nhập báo cáo",
+        "share": "Chia sẻ báo cáo"
+      },
+      "user": {
+        "view": "Xem người dùng",
+        "create": "Tạo người dùng",
+        "update": "Cập nhật người dùng",
+        "delete": "Xóa người dùng",
+        "resetPassword": "Reset mật khẩu",
+        "activate": "Kích hoạt người dùng",
+        "deactivate": "Vô hiệu hóa người dùng",
+        "export": "Xuất người dùng",
+        "import": "Nhập người dùng"
+      },
+      "role": {
+        "view": "Xem vai trò",
+        "create": "Tạo vai trò",
+        "update": "Cập nhật vai trò",
+        "delete": "Xóa vai trò",
+        "assignPermissions": "Phân quyền",
+        "export": "Xuất vai trò",
+        "import": "Nhập vai trò"
+      },
+      "workflow": {
+        "view": "Xem quy trình",
+        "create": "Tạo quy trình",
+        "update": "Cập nhật quy trình",
+        "delete": "Xóa quy trình",
+        "execute": "Thực thi quy trình"
+      },
+      "order": {
+        "view": "Xem đơn hàng",
+        "create": "Tạo đơn hàng",
+        "update": "Cập nhật đơn hàng",
+        "delete": "Xóa đơn hàng",
+        "approve": "Duyệt đơn hàng",
+        "cancel": "Hủy đơn hàng",
+        "export": "Xuất đơn hàng",
+        "import": "Nhập đơn hàng"
+      },
+      "quotation": {
+        "view": "Xem báo giá",
+        "create": "Tạo báo giá",
+        "update": "Cập nhật báo giá",
+        "delete": "Xóa báo giá",
+        "approve": "Duyệt báo giá",
+        "send": "Gửi báo giá"
+      },
+      "contract": {
+        "view": "Xem hợp đồng",
+        "create": "Tạo hợp đồng",
+        "update": "Cập nhật hợp đồng",
+        "delete": "Xóa hợp đồng",
+        "approve": "Duyệt hợp đồng",
+        "sign": "Ký hợp đồng",
+        "export": "Xuất hợp đồng",
+        "import": "Nhập hợp đồng"
+      },
+      "company": {
+        "view": "Xem công ty",
+        "create": "Tạo công ty",
+        "update": "Cập nhật công ty",
+        "delete": "Xóa công ty"
+      },
+      "deal": {
+        "view": "Xem giao dịch",
+        "create": "Tạo giao dịch",
+        "update": "Cập nhật giao dịch",
+        "delete": "Xóa giao dịch"
+      },
+      "analytics": {
+        "view": "Xem phân tích",
+        "export": "Xuất phân tích"
+      },
+      "setting": {
+        "view": "Xem cài đặt",
+        "update": "Cập nhật cài đặt"
+      },
+      "settings": {
+        "view": "Xem cài đặt hệ thống",
+        "create": "Tạo cài đặt hệ thống",
+        "update": "Cập nhật cài đặt hệ thống",
+        "delete": "Xóa cài đặt hệ thống",
+        "export": "Xuất cài đặt hệ thống",
+        "import": "Nhập cài đặt hệ thống"
+      },
+      "audit": {
+        "view": "Xem nhật ký kiểm toán",
+        "create": "Tạo nhật ký kiểm toán",
+        "update": "Cập nhật nhật ký kiểm toán",
+        "delete": "Xóa nhật ký kiểm toán"
+      },
+      "tenant": {
+        "view": "Xem tổ chức",
+        "create": "Tạo tổ chức",
+        "update": "Cập nhật tổ chức",
+        "delete": "Xóa tổ chức",
+        "settings": "Cài đặt tổ chức",
+        "export": "Xuất tổ chức",
+        "import": "Nhập tổ chức"
+      }
+    }
   },
   "users": {
     "title": "Quản lý người dùng",
@@ -821,7 +1035,9 @@
       "message": "Bạn có chắc chắn muốn reset mật khẩu cho người dùng này? Mật khẩu tạm thời mới sẽ được tạo.",
       "resetting": "Đang reset...",
       "successMessage": "Mật khẩu đã được reset thành công! Vui lòng cung cấp mật khẩu tạm thời này cho người dùng:",
-      "newPassword": "Mật khẩu tạm thời"
+      "newPassword": "Mật khẩu tạm thời",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép!"
     },
     "passwordStrength": {
       "label": "Độ mạnh mật khẩu",
@@ -833,6 +1049,132 @@
     "roleHelper": "Nhập Role IDs, cách nhau bởi dấu phẩy. VD: guid1, guid2",
     "copied": "Đã sao chép!",
     "currentRoles": "Vai trò hiện tại"
+  },
+  "tenants": {
+    "title": "Quản lý Tenant",
+    "subtitle": "Quản lý các tổ chức trong hệ thống",
+    "list": {
+      "title": "Danh sách Tenant",
+      "subtitle": "Xem và quản lý tất cả các tổ chức"
+    },
+    "create": {
+      "title": "Tạo Tenant mới",
+      "subtitle": "Thêm tổ chức mới vào hệ thống",
+      "button": "Tạo Tenant"
+    },
+    "edit": {
+      "title": "Chỉnh sửa Tenant",
+      "subtitle": "Cập nhật thông tin tổ chức",
+      "button": "Cập nhật"
+    },
+    "detail": {
+      "title": "Chi tiết Tenant",
+      "subtitle": "Xem thông tin chi tiết tổ chức"
+    },
+    "register": {
+      "title": "Đăng ký tài khoản",
+      "subtitle": "Bắt đầu dùng thử miễn phí 14 ngày",
+      "button": "Đăng ký ngay",
+      "companyName": "Tên công ty",
+      "adminFirstName": "Tên quản trị viên",
+      "adminLastName": "Họ quản trị viên",
+      "adminEmail": "Email quản trị viên",
+      "phoneNumber": "Số điện thoại",
+      "industry": "Ngành nghề",
+      "termsAgree": "Tôi đồng ý với",
+      "termsLink": "Điều khoản dịch vụ",
+      "and": "và",
+      "privacyLink": "Chính sách bảo mật",
+      "alreadyHaveAccount": "Đã có tài khoản?",
+      "loginLink": "Đăng nhập",
+      "success": "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản.",
+      "successSubtitle": "Chúng tôi đã gửi email xác nhận đến địa chỉ của bạn."
+    },
+    "fields": {
+      "name": "Tên tổ chức",
+      "subdomain": "Subdomain",
+      "subdomainHelper": "URL của bạn sẽ là: https://{subdomain}.yourcrm.com",
+      "subdomainPlaceholder": "company-name",
+      "subdomainAvailable": "Subdomain khả dụng",
+      "subdomainTaken": "Subdomain đã được sử dụng",
+      "subdomainChecking": "Đang kiểm tra...",
+      "status": "Trạng thái",
+      "plan": "Gói dịch vụ",
+      "maxUsers": "Số người dùng tối đa",
+      "maxUsersHelper": "Nhập 0 để không giới hạn",
+      "currentUsers": "Người dùng hiện tại",
+      "maxStorage": "Dung lượng tối đa",
+      "maxStorageHelper": "Dung lượng lưu trữ tối đa (GB)",
+      "storageUsed": "Đã sử dụng",
+      "logoUrl": "Logo URL",
+      "logoUrlHelper": "URL của logo công ty",
+      "primaryColor": "Màu chủ đạo",
+      "primaryColorHelper": "Màu chủ đạo của giao diện",
+      "timeZone": "Múi giờ",
+      "culture": "Ngôn ngữ",
+      "trialEndsAt": "Hết hạn dùng thử",
+      "createdAt": "Ngày tạo",
+      "updatedAt": "Ngày cập nhật"
+    },
+    "status": {
+      "trial": "Dùng thử",
+      "active": "Hoạt động",
+      "suspended": "Tạm ngưng",
+      "inactive": "Không hoạt động",
+      "deleted": "Đã xóa"
+    },
+    "plan": {
+      "trial": "Dùng thử",
+      "free": "Miễn phí",
+      "professional": "Professional",
+      "enterprise": "Enterprise"
+    },
+    "usage": {
+      "users": "Người dùng",
+      "storage": "Dung lượng",
+      "unlimited": "Không giới hạn",
+      "of": "/"
+    },
+    "actions": {
+      "viewDetails": "Xem chi tiết",
+      "editTenant": "Chỉnh sửa",
+      "deleteTenant": "Xóa",
+      "suspendTenant": "Tạm ngưng",
+      "activateTenant": "Kích hoạt",
+      "upgradePlan": "Nâng cấp gói"
+    },
+    "messages": {
+      "created": "Tạo tenant thành công",
+      "updated": "Cập nhật tenant thành công",
+      "deleted": "Tenant đã được đánh dấu xóa",
+      "deleteWarning": "Tenant sẽ được đánh dấu xóa. Dữ liệu sẽ được xóa vĩnh viễn sau 30 ngày.",
+      "suspended": "Tenant đã bị tạm ngưng",
+      "activated": "Tenant đã được kích hoạt"
+    },
+    "validation": {
+      "subdomainRequired": "Subdomain là bắt buộc",
+      "subdomainMinLength": "Subdomain phải có ít nhất 3 ký tự",
+      "subdomainMaxLength": "Subdomain không được vượt quá 63 ký tự",
+      "subdomainFormat": "Subdomain chỉ được chứa chữ cái thường, số và dấu gạch ngang",
+      "subdomainStartEnd": "Subdomain không được bắt đầu hoặc kết thúc bằng dấu gạch ngang",
+      "subdomainReserved": "Subdomain này đã được hệ thống dành riêng",
+      "subdomainTaken": "Subdomain này đã được sử dụng",
+      "nameRequired": "Tên tổ chức là bắt buộc",
+      "planRequired": "Gói dịch vụ là bắt buộc",
+      "maxUsersMin": "Số người dùng tối đa phải lớn hơn hoặc bằng 0",
+      "maxStorageMin": "Dung lượng tối đa phải lớn hơn 0",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp",
+      "termsRequired": "Bạn phải đồng ý với điều khoản dịch vụ"
+    },
+    "empty": {
+      "title": "Chưa có tenant nào",
+      "description": "Hãy tạo tenant đầu tiên để bắt đầu",
+      "button": "Tạo Tenant đầu tiên"
+    },
+    "deleteDialog": {
+      "title": "Xác nhận xóa Tenant",
+      "message": "Bạn có chắc chắn muốn xóa tenant này? Tenant sẽ được đánh dấu xóa và dữ liệu sẽ bị xóa vĩnh viễn sau 30 ngày. Hành động này không thể hoàn tác sau khi hết thời gian grace period."
+    }
   },
   "errors": {
     "required": "Trường này là bắt buộc",
