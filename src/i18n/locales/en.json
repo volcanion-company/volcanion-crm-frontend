@@ -1,6 +1,7 @@
 {
   "common": {
     "save": "Save",
+    "saving": "Saving...",
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
@@ -76,6 +77,7 @@
     "reports": "Reports",
     "settings": "Settings",
     "users": "Users",
+    "permissions": "Permissions",
     "roles": "Roles",
     "tenants": "Tenants",
     "overview": "Overview",
@@ -519,10 +521,31 @@
     "title": "Profile",
     "description": "Manage your personal information",
     "accountInfo": "Account Information",
+    "editProfile": "Edit Profile",
     "email": "Email",
+    "phone": "Phone Number",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "company": "Company",
     "createdAt": "Created Date",
-    "lastLoginAt": "Last Login"
+    "lastLoginAt": "Last Login",
+    "security": {
+      "title": "Security",
+      "description": "Manage your password and security settings",
+      "changePassword": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "passwordHint": "Minimum 8 characters"
+    },
+    "messages": {
+      "profileUpdated": "Profile updated successfully",
+      "profileUpdateFailed": "Failed to update profile",
+      "passwordChanged": "Password changed successfully",
+      "passwordChangeFailed": "Failed to change password",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters"
+    }
   },
   "customers": {
     "title": "Customers",

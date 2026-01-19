@@ -41,16 +41,22 @@ export const tenantService = {
       sortDescending: params?.sortDescending,
     };
 
-    const response = await httpClient.get<ApiResponse<BackendPaginatedResponse<Tenant>>>(
+    const response = await httpClient.get<ApiResponse<BackendPaginatedResponse<any>>>(
       '/api/v1/tenants',
       { params: backendParams }
     );
 
     const backendData = response.data;
 
+    // Map backend field names to frontend
+    const items = backendData.items.map((item: any) => ({
+      ...item,
+      currentUsers: item.userCount ?? item.currentUsers,
+    }));
+
     // Transform backend pagination to frontend format
     return {
-      items: backendData.items,
+      items: items,
       page: backendData.pageNumber,
       pageSize: backendData.pageSize,
       totalPages: backendData.totalPages,
@@ -62,8 +68,14 @@ export const tenantService = {
 
   // Get tenant by ID
   async getTenantById(id: string): Promise<Tenant> {
-    const response = await httpClient.get<ApiResponse<Tenant>>(`/api/v1/tenants/${id}`);
-    return response.data;
+    const response = await httpClient.get<ApiResponse<any>>(`/api/v1/tenants/${id}`);
+    const data = response.data;
+    
+    // Map backend field names to frontend
+    return {
+      ...data,
+      currentUsers: data.userCount ?? data.currentUsers,
+    };
   },
 
   // Register tenant (Public endpoint - AllowAnonymous)

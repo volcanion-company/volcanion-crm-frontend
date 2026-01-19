@@ -1,6 +1,7 @@
 {
   "common": {
     "save": "Lưu",
+    "saving": "Đang lưu...",
     "cancel": "Hủy",
     "delete": "Xóa",
     "edit": "Sửa",
@@ -76,6 +77,7 @@
     "reports": "Báo cáo",
     "settings": "Cài đặt",
     "users": "Người dùng",
+    "permissions": "Phân quyền",
     "roles": "Vai trò",
     "tenants": "Tổ chức",
     "overview": "Tổng quan",
@@ -523,10 +525,31 @@
     "title": "Trang cá nhân",
     "description": "Quản lý thông tin cá nhân của bạn",
     "accountInfo": "Thông tin tài khoản",
+    "editProfile": "Chỉnh sửa thông tin",
     "email": "Email",
+    "phone": "Số điện thoại",
+    "firstName": "Tên",
+    "lastName": "Họ",
     "company": "Công ty",
     "createdAt": "Ngày tạo",
-    "lastLoginAt": "Lần đăng nhập cuối"
+    "lastLoginAt": "Lần đăng nhập cuối",
+    "security": {
+      "title": "Bảo mật",
+      "description": "Quản lý mật khẩu và cài đặt bảo mật",
+      "changePassword": "Đổi mật khẩu",
+      "currentPassword": "Mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "passwordHint": "Tối thiểu 8 ký tự"
+    },
+    "messages": {
+      "profileUpdated": "Cập nhật thông tin thành công",
+      "profileUpdateFailed": "Cập nhật thông tin thất bại",
+      "passwordChanged": "Đổi mật khẩu thành công",
+      "passwordChangeFailed": "Đổi mật khẩu thất bại",
+      "passwordMismatch": "Mật khẩu xác nhận không khớp",
+      "passwordTooShort": "Mật khẩu phải có ít nhất 8 ký tự"
+    }
   },
   "customers": {
     "title": "Khách hàng",

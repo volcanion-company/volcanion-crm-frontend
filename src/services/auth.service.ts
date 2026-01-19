@@ -4,6 +4,7 @@ import {
   RegisterRequest,
   AuthResponse,
   RefreshTokenRequest,
+  User,
 } from '@/types';
 
 // Backend API response wrapper type
@@ -11,6 +12,20 @@ interface ApiResponse<T> {
   success: boolean;
   data: T;
   message?: string;
+}
+
+interface UpdateProfileRequest {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  timeZone?: string;
+  culture?: string;
+}
+
+interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
 }
 
 export const authApi = {
@@ -27,6 +42,15 @@ export const authApi = {
   refresh: async (data: RefreshTokenRequest): Promise<AuthResponse> => {
     const response = await httpClient.post<ApiResponse<AuthResponse>>('/api/v1/auth/refresh', data);
     return response.data;
+  },
+
+  updateProfile: async (data: UpdateProfileRequest): Promise<User> => {
+    const response = await httpClient.put<ApiResponse<User>>('/api/v1/auth/profile', data);
+    return response.data;
+  },
+
+  changePassword: async (data: ChangePasswordRequest): Promise<void> => {
+    await httpClient.put<ApiResponse<void>>('/api/v1/auth/change-password', data);
   },
 
   logout: async (): Promise<void> => {

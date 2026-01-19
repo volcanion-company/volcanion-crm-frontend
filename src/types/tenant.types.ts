@@ -34,6 +34,19 @@ export interface Tenant {
   createdAt: string;
   updatedAt?: string;
   trialEndsAt?: string;
+  users?: TenantUser[];
+}
+
+export interface TenantUser {
+  id: string;
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  fullName?: string;
+  phone?: string;
+  status: string;
+  lastLoginAt?: string;
+  roles: string[];
 }
 
 export interface TenantListParams {

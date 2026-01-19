@@ -1,11 +1,12 @@
 'use client';
 
-import { use } from 'react';
+import { use, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTenant, useDeleteTenant } from '@/hooks/useTenants';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Loading } from '@/components/ui/Loading';
+import { Pagination } from '@/components/ui/Pagination';
 import {
   TenantStatusBadge,
   TenantPlanBadge,
@@ -27,6 +28,33 @@ export default function TenantDetailPage({ params }: { params: Promise<{ id: str
   const deleteTenant = useDeleteTenant();
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  // Pagination for users
+  const paginatedUsers = useMemo(() => {
+    if (!tenant?.users) return { 
+      items: [], 
+      totalPages: 0, 
+      totalCount: 0,
+      hasNextPage: false,
+      hasPreviousPage: false,
+    };
+    
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const items = tenant.users.slice(startIndex, endIndex);
+    const totalCount = tenant.users.length;
+    const totalPages = Math.ceil(totalCount / pageSize);
+    
+    return {
+      items,
+      totalPages,
+      totalCount,
+      hasNextPage: currentPage < totalPages,
+      hasPreviousPage: currentPage > 1,
+    };
+  }, [tenant?.users, currentPage, pageSize]);
 
   const handleDelete = async () => {
     try {
@@ -122,19 +150,6 @@ export default function TenantDetailPage({ params }: { params: Promise<{ id: str
           Sử dụng tài nguyên
         </h2>
         <div className="space-y-6">
-          {/* Users */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                <Users className="w-4 h-4" />
-                {t('usage.users')}
-              </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                {formatUsersDisplay(tenant.currentUsers, tenant.maxUsers)}
-              </span>
-            </div>
-          </div>
-
           {/* Storage */}
           <div>
             <div className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -258,6 +273,102 @@ export default function TenantDetailPage({ params }: { params: Promise<{ id: str
           )}
         </div>
       </Card>
+
+      {/* Users List - Moved to bottom with pagination */}
+      {tenant.users && tenant.users.length > 0 && (
+        <Card className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+              <Users className="w-5 h-5" />
+              Người dùng ({tenant.users.length} / {tenant.maxUsers})
+            </h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Tên
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Email
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Vai trò
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Trạng thái
+                  </th>
+                  <th className="text-left py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Đăng nhập cuối
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedUsers.items.map((user) => (
+                  <tr
+                    key={user.id}
+                    className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                  >
+                    <td className="py-3 px-4">
+                      <div className="text-sm font-medium text-gray-900 dark:text-white">
+                        {user.fullName || `${user.firstName || ''} ${user.lastName || ''}`.trim()}
+                      </div>
+                      {user.phone && (
+                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                          {user.phone}
+                        </div>
+                      )}
+                    </td>
+                    <td className="py-3 px-4 text-sm text-gray-700 dark:text-gray-300">
+                      {user.email}
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex flex-wrap gap-1">
+                        {user.roles.map((role, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
+                          >
+                            {role}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                          user.status === 'Active'
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                            : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-400'
+                        }`}
+                      >
+                        {user.status}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-sm text-gray-600 dark:text-gray-400">
+                      {user.lastLoginAt ? formatDate(user.lastLoginAt) : '-'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          {/* Pagination */}
+          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <Pagination
+              page={currentPage}
+              pageSize={pageSize}
+              totalCount={paginatedUsers.totalCount}
+              totalPages={paginatedUsers.totalPages}
+              hasNextPage={paginatedUsers.hasNextPage}
+              hasPreviousPage={paginatedUsers.hasPreviousPage}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+        </Card>
+      )}
 
       {/* Delete Dialog */}
       {deleteDialogOpen && (
